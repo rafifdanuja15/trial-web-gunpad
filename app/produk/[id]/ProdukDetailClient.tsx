@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 const shops = (produk: (typeof produkList)[0]) => [
   { name: "Tokopedia", url: produk.tokopedia, color: "#00AA5B", bgColor: "#E8F9F0", letter: "T", bg: "#00AA5B" },
   { name: "Shopee",    url: produk.shopee,    color: "#EE4D2D", bgColor: "#FEF0ED", letter: "S", bg: "#EE4D2D" },
-  { name: "Blibli",   url: produk.blibli,    color: "#0095DA", bgColor: "#E6F4FC", letter: "B", bg: "#0095DA" },
+  { name: "Blibli",    url: produk.blibli,    color: "#0095DA", bgColor: "#E6F4FC", letter: "B", bg: "#0095DA" },
 ];
 
 export default function ProdukDetailClient({ produk }: { produk: (typeof produkList)[0] }) {
@@ -55,9 +55,10 @@ export default function ProdukDetailClient({ produk }: { produk: (typeof produkL
                 </svg>
                 Beli Sekarang di:
               </p>
+
               <div className={styles.shopGrid}>
                 {shopList.map((shop) => (
-                  
+                  <a
                     key={shop.name}
                     href={shop.url}
                     target="_blank"
@@ -65,9 +66,23 @@ export default function ProdukDetailClient({ produk }: { produk: (typeof produkL
                     className={styles.shopBtn}
                     style={{ "--shop-color": shop.color, "--shop-bg": shop.bgColor } as React.CSSProperties}
                   >
-                    <div style={{ background: shop.bg, borderRadius: 8, width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <span style={{ color: "white", fontWeight: 700, fontSize: 14 }}>{shop.letter}</span>
+                    <div
+                      style={{
+                        background: shop.bg,
+                        borderRadius: 8,
+                        width: 32,
+                        height: 32,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
+                    >
+                      <span style={{ color: "white", fontWeight: 700, fontSize: 14 }}>
+                        {shop.letter}
+                      </span>
                     </div>
+
                     <div className={styles.shopInfo}>
                       <span className={styles.shopName2}>{shop.name}</span>
                       <span className={styles.shopSub}>Beli di sini →</span>
@@ -93,6 +108,7 @@ export default function ProdukDetailClient({ produk }: { produk: (typeof produkL
             <p className="section-label">Produk Lainnya</p>
             <h2 className={styles.otherTitle}>Jelajahi Lebih Banyak</h2>
           </div>
+
           <div className={styles.otherGrid}>
             {others.map((p) => (
               <Link key={p.id} href={`/produk/${p.id}`} className={styles.otherCard}>
